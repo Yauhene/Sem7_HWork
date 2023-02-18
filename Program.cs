@@ -15,7 +15,7 @@ void myTaskMenu()
     Console.WriteLine();
     Console.WriteLine();
     Console.WriteLine("--------------------------------------------------------------------");
-    Console.WriteLine("Представлены решения задач 41 и 43");
+    Console.WriteLine("Представлены решения задач 47, 50 и 52");
     Console.WriteLine("Введите номер задачи(либо q/Q для выхода):");
     Console.WriteLine("--------------------------------------------------------------------");
     for(int i=1; i <=5; i++) Console.WriteLine();
@@ -31,7 +31,7 @@ void myTaskMenu()
                 Console.Clear(); 
                 Console.WriteLine();
                 
-                Task_47_1();
+                Task_47();
                 
                 selNum = "";
                 Console.Clear(); 
@@ -139,7 +139,7 @@ void printArray(double[,] arr)
     {
         for (int j = 0; j <= columns-1; j++)
         {
-            Console.WriteLine(arr[i,j] +  " ");
+            Console.Write(arr[i,j] +  " ");
         }
         Console.WriteLine();
     }
@@ -152,11 +152,13 @@ void Task_47()
     double[,] array = makeArray(3, 4);
     printArray(array);
 
+    PauseString();
 }
     
-void Task_47_1
+void PauseString()
 {
-    Console.Write("Такова селявуха, однако!!!");
+    Console.WriteLine( "Для продолжения нажмите 'Ввод'...");
+    Console.ReadLine();
 }
 
     myTaskMenu();
