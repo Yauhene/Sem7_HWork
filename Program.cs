@@ -1,4 +1,6 @@
-﻿// Домашнее задание к семинару 8 от 20.02.2023
+﻿// See https://aka.ms/new-console-template for more information
+Console.WriteLine("Hello, World!");
+// Домашнее задание к семинару 8 от 20.02.2023
 //=====================================================================================================================
 // Функция консольного меню
 
@@ -149,8 +151,22 @@ void printArray(int[,] arr)
     for(int i=1; i<3; i++) Console.WriteLine();
    
 }
-
-
+//=====================================================================================================================
+// Функция сортирует по убыванию значения двумерного массива в указанной строке
+void sortNumbers(int[,] arr, int rowN);
+{
+    maxNum=0;
+    maxIndex = 0;
+    
+    for(int j = 0; j < arr.GetLength(1); j++)
+    {
+        if(maxNum < arr[rowNum,j])
+        {
+            maxNum = arr[rowNum,j];
+            maxIndex = j;
+        }
+    }
+}
 
 //==== Задача 54: =================================================================================================================
 //  Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
@@ -174,8 +190,23 @@ void Task_54()
 
     int rowNum=array.GetLength(0);
     int colNum=array.GetLength(1);
+    int max = array[0,0];
+    int maxIndex = 0;
 
-    
+    for(int j = 0; j < colNum; j++)
+    {
+        max = array[0,j];
+        maxIndex = j;
+
+        for(int i = 0; i < rowNum; i++)
+        {
+            sortNumbers(int[,] array, int i);
+
+        }
+
+    }
+    printArray(array);
+
 
 }
 
