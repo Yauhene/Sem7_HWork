@@ -17,7 +17,7 @@ void myTaskMenu()
     Console.WriteLine();
     Console.WriteLine();
     Console.WriteLine("--------------------------------------------------------------------");
-    Console.WriteLine("Представлены решения задач 47, 50 и 52");
+    Console.WriteLine("Представлены решения задач 54, 50 и 52");
     Console.WriteLine("Введите номер задачи(либо q/Q для выхода):");
     Console.WriteLine("--------------------------------------------------------------------");
     for(int i=1; i <=5; i++) Console.WriteLine();
@@ -149,27 +149,38 @@ void printArray(int[,] arr)
     }
 
     for(int i=1; i<3; i++) Console.WriteLine();
+    
    
 }
+
+
+
 //=====================================================================================================================
 // Функция сортирует по убыванию значения двумерного массива в указанной строке
-void sortNumbers(int[,] arr, int rowN);
+void sortN(int[,] arr, int rowN)
 {
-    int maxNum = 0;
-    int maxIndex = 0;
+    //int maxNum = 0;
+    //int maxIndex = 0;
     int startIndex = 0;
-    
-    for(int j = startIndex; j < arr.GetLength(1); j++)
+    int tempField=0;
+        
+    while(startIndex < arr.GetLength(1))
     {
-        if(maxNum < arr[rowN,j])
+        for(int j = startIndex+1; j < arr.GetLength(1); j++)
         {
-            maxNum = arr[rowN,j];
-            maxIndex = j;
+            if(arr[rowN,startIndex] < arr[rowN,j])
+            {
+                tempField = arr[rowN,j];
+                arr[rowN,j] = arr[rowN,startIndex];
+                arr[rowN,startIndex] =tempField;
+                
+            }
         }
-        arr[startIndex,j] = maxNum;
-        startIndex++;
-    }
+    startIndex++;
+   }
 }
+
+
 
 //==== Задача 54: =================================================================================================================
 //  Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
@@ -183,33 +194,32 @@ void sortNumbers(int[,] arr, int rowN);
 // 8 4 4 2
 void Task_54()
 {
-    Console.WriteLine("==== Задача 54: =============================================================================================");
-    Console.WriteLine("Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.");
+    Console.WriteLine("==== Задача 54: =======================================================================================");
+    Console.WriteLine("Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию");
+    Console.WriteLine("элементы каждой строки двумерного массива.");
+    Console.Clear();
     
     int[,] array = makeArray(3, 4);
+    Console.WriteLine("Исходный массив:");
     printArray(array);
 
     PauseString();
 
     int rowNum=array.GetLength(0);
     int colNum=array.GetLength(1);
-    //int max = array[0,0];
-    //int maxIndex = 0;
-
+    int max = array[0,0];
+    
     for(int j = 0; j < colNum; j++)
     {
-        //max = array[0,j];
-        //maxIndex = j;
-
         for(int i = 0; i < rowNum; i++)
         {
-            sortNumbers(array, i);
-
+           sortN(array, i);
         }
 
     }
+    Console.WriteLine("Отсортированный: ");
     printArray(array);
-
+    PauseString();
 
 }
 
@@ -289,3 +299,4 @@ void PauseString()
 }
 
     myTaskMenu();
+    //Task_54();
