@@ -42,9 +42,9 @@ void myTaskMenu()
                 break;
             }
 
-            case "50":
+            case "56":
             {    Console.WriteLine($"Выбрано : Задача {selNum}");
-                Task_50();
+                Task_56();
 
                 selNum = "";
 
@@ -180,6 +180,46 @@ void sortN(int[,] arr, int rowN)
    }
 }
 
+//=====================================================================================================================
+// Функция возвращает номер строки двумерного массива с наименьшей суммой значений элементов
+int FindMinSumRow(int[,] arr)
+{
+    int minSumValue = 0;
+    int minRowNumber=0;
+    int rowSum = 0;
+    printArray(arr);
+    
+    for(int j = 0; j < arr.GetLength(1); j++)
+    {
+        minSumValue=minSumValue+arr[0,j];
+        rowSum = rowSum + arr[0,j];
+    }
+    Console.WriteLine($"{0+1}-я строка: {arr[0,0]} + {arr[0,1]} + {arr[0,2]} + {arr[0,3]} = {rowSum}");
+
+    for(int i = 1; i < arr.GetLength(0); i++)
+    {
+        rowSum = 0;
+        for(int j = 0; j < arr.GetLength(1); j++)
+        {
+            
+            rowSum = rowSum + arr[i,j];
+          
+                        
+        }
+
+        Console.WriteLine($"{i+1}-я строка: {arr[i,0]} + {arr[i,1]} + {arr[i,2]} + {arr[i,3]} = {rowSum}");
+
+        if (rowSum < minSumValue) 
+            {
+                minSumValue = rowSum;
+                minRowNumber = i ;
+            }
+            
+    }
+    Console.ReadLine();
+    return minRowNumber;
+}
+
 
 
 //==== Задача 54: =================================================================================================================
@@ -223,49 +263,35 @@ void Task_54()
 
 }
 
-//==== Задача 50 =================================================================================================================
-//Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, 
-//и возвращает значение этого элемента или же указание, что такого элемента нет. 
-void Task_50()
+//==== Задача 56: =================================================================================================================
+// Задайте прямоугольный двумерный массив. 
+//Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+// Например, задан массив:
+//1 4 7 2
+//5 9 2 3
+//8 4 2 4
+//5 2 6 7
+//Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
+void Task_56()
 {
     int rCount = 3;
     int cCount = 4;
     int[,] array = makeArray(rCount, cCount);
-    int rowNumber;
-    int columnNumber;
-    int indexNum=0;
-    bool onceMore=true;
+
+    int minSumRow = FindMinSumRow(array);
+    //int columnNumber;
+    //int indexNum=0;
+    //bool onceMore=true;
+
 
     Console.Clear();
 
-
-    Console.WriteLine("Представлен массив размером 3 х 4.");
-    
+    //Console.WriteLine(minSumRow);
     printArray(array);
-    Console.WriteLine("Введите индекс элемента как двузначное число, первая цифра - строка, вторая - колонка");
-    indexNum = IntInput("");
-    while (indexNum<10 && indexNum>=100)
-    {
-        Console.WriteLine($"indexNum = {indexNum}");
-        Console.WriteLine($"Введенное число {indexNum} не является двузначным.");
-        Console.WriteLine("Некрасиво вышло. Еще разок?");
-    }
-
-    rowNumber = indexNum / 10;
-    columnNumber = indexNum % 10;
+    Console.WriteLine($"Строка с индексом {minSumRow} ({minSumRow+1}-я сверху) имеет минимальную сумму значений элементов");
+    Console.WriteLine();
+    //printArray(array);
     
-    if (rowNumber>rCount || columnNumber>cCount)
-    {
-        Console.WriteLine("Да нет тут такого индекса");
-    }
-    else
-    {
-        printArray(array);
-        Console.WriteLine();
-        Console.WriteLine($" Значение элемента массива в строке {rowNumber} и колонке {columnNumber} равно {array[rowNumber-1,columnNumber-1]}");
-        Console.WriteLine();
-    }
-
     PauseString();
 }
 
