@@ -155,16 +155,19 @@ void printArray(int[,] arr)
 // Функция сортирует по убыванию значения двумерного массива в указанной строке
 void sortNumbers(int[,] arr, int rowN);
 {
-    maxNum=0;
-    maxIndex = 0;
+    int maxNum = 0;
+    int maxIndex = 0;
+    int startIndex = 0;
     
-    for(int j = 0; j < arr.GetLength(1); j++)
+    for(int j = startIndex; j < arr.GetLength(1); j++)
     {
-        if(maxNum < arr[rowNum,j])
+        if(maxNum < arr[rowN,j])
         {
-            maxNum = arr[rowNum,j];
+            maxNum = arr[rowN,j];
             maxIndex = j;
         }
+        arr[startIndex,j] = maxNum;
+        startIndex++;
     }
 }
 
@@ -190,17 +193,17 @@ void Task_54()
 
     int rowNum=array.GetLength(0);
     int colNum=array.GetLength(1);
-    int max = array[0,0];
-    int maxIndex = 0;
+    //int max = array[0,0];
+    //int maxIndex = 0;
 
     for(int j = 0; j < colNum; j++)
     {
-        max = array[0,j];
-        maxIndex = j;
+        //max = array[0,j];
+        //maxIndex = j;
 
         for(int i = 0; i < rowNum; i++)
         {
-            sortNumbers(int[,] array, int i);
+            sortNumbers(array, i);
 
         }
 
