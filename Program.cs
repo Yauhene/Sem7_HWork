@@ -359,6 +359,8 @@ void Task_58()
     array3 = MultiplyABmatrix(array1, array2, array3);
     Console.WriteLine();
     Console.WriteLine("Результат на тестовых данных---------");
+    Console.WriteLine($"Результирующая матрица 3:");
+    printArray(array3);
 
     PauseString();
 
@@ -377,7 +379,7 @@ void Task_58()
     array6 = MultiplyABmatrix(array4, array5, array6);
 
     Console.WriteLine();
-    Console.WriteLine("Результат на случайных данных");
+    Console.WriteLine("Результат на случайных сгенерированных данных");
     printArray(array6);
     
      PauseString();
