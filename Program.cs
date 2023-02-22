@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+
 // Домашнее задание к семинару 8 от 20.02.2023
 //=====================================================================================================================
 // Функция консольного меню
@@ -17,7 +17,7 @@ void myTaskMenu()
     Console.WriteLine();
     Console.WriteLine();
     Console.WriteLine("--------------------------------------------------------------------");
-    Console.WriteLine("Представлены решения задач 54, 56 и 52");
+    Console.WriteLine("Представлены решения задач 54, 56, 58 и 60");
     Console.WriteLine("Введите номер задачи(либо q/Q для выхода):");
     Console.WriteLine("--------------------------------------------------------------------");
     for(int i=1; i <=5; i++) Console.WriteLine();
@@ -116,12 +116,23 @@ void myTaskMenu()
 bool NoMatches(int newVol, int[] arrTest)
 {
     bool noM = true;
+    // распечатка проверочного массива-------------------------------------
+                    // Console.Write("Проверочный массив: ");
+                    // for(int m = 0; m < arrTest.Length; m++)
+                    // {
+                        
+                    //     Console.Write($"{arrTest[m]}, ");
+                    // }
+                    // Console.WriteLine();
         
         for(int g = 0; g < arrTest.Length; g++)
             {
                 if (arrTest[g] == newVol)
                 {
+                    //Console.WriteLine($"arrTest[g] = {arrTest[g]}, newVol = {newVol}");
                     noM = false;
+                    // Console.WriteLine($"Попытка повторного внесения значения {newVol}");
+                    // Console.WriteLine($"g = {g}");
                 }
             }
         
@@ -424,7 +435,9 @@ void Task_60()
     int sCount = 2;
     int newValue;
     int numOfValuesInTestArr = 0;
+    int nVcount = 0;
 
+    Console.WriteLine();
     Random rnd = new Random();
     int t = 0;
     int[,,] arr3D = new int[rCount,cCount,sCount];
@@ -436,21 +449,29 @@ void Task_60()
         {
             for(int g = 0; g < arr3D.GetLength(2); g++)
             {
-                newValue = rnd.Next(1,100);
-                while(NoMatches(newValue, testArr))
-                {
-                    //newVolume = rnd.Next(1,100);
-                    // Console.WriteLine($"t = {t}");
-                    // t++;
-                    testArr[numOfValuesInTestArr+1] = newValue;
-                    numOfValuesInTestArr++;
                 
-                //arr3D[i,j,g] = rnd.Next(1,100);
+                
+                newValue = rnd.Next(1,10);
+                nVcount++;
+                
+                while(!NoMatches(newValue, testArr))
+                {                    
+                    newValue = rnd.Next(1,10);
+                    nVcount++;
                 }
+
+                testArr[numOfValuesInTestArr] = newValue;
+                numOfValuesInTestArr++;
+                arr3D[i,j,g] = newValue;
+                Console.WriteLine($"Элемент массива с индексом [{i},{j},{g}] равен {arr3D[i,j,g]}");
 
             }
         }
+        
     }
+
+    Console.WriteLine();
+    Console.WriteLine($"Количество генераций: {nVcount}");
     PauseString();
 }
 
@@ -461,4 +482,5 @@ void PauseString()
 }
 
     myTaskMenu();
+   
   
