@@ -220,7 +220,12 @@ int FindMinSumRow(int[,] arr)
     return minRowNumber;
 }
 
+//================================================================================================================================
+// Функция умножает двумерную матрицу (массив) arr1 на матрицу arr2, результат возвращает в матрице arr3
+int[,] MultiplyABmatrix(arr1, arr2, arr3)
+{
 
+}
 
 //==== Задача 54: =================================================================================================================
 //  Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
@@ -288,16 +293,22 @@ void Task_56()
     Console.WriteLine($"Строка с индексом {minSumRow} ({minSumRow+1}-я сверху) имеет минимальную сумму значений элементов");
     Console.WriteLine();
     
-    Console.WriteLine("Для продолжения нажмите Enter...");
+    //Console.WriteLine("Для продолжения нажмите Enter...");
     PauseString();
 }
 
-void Task_52()
+void Task_58()
 {
-    int rCount = 3;
+    int rCount = 2;
     int cCount = 3;
-    double sumInColumn;
-    int[,] array = makeArray(rCount, cCount);
+    
+    // double sumInColumn;
+    int[,] array1 = makeArray(rCount, cCount);
+    int[,] array2 = makeArray(rCount, cCount);
+    int[,] array3 = new int [rCount, cCount];
+
+    int[,] MultiplyABmatrix(array1, array2, array3);
+
     Console.WriteLine();
     printArray(array);
     for (int j = 0; j < cCount; j++)
@@ -317,7 +328,7 @@ void Task_52()
 
 void PauseString()
 {
-    
+    Console.WriteLine("Для продолжения нажмите Enter...");
     Console.ReadLine();
 }
 
