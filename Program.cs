@@ -486,6 +486,57 @@ void Task_62()
     //4. если нет возможности увеличивать номер следующего индекса - то уменьшать
     // критерии невозможности: элемент не нулевой, элемент выходит за рамки массива
     //5. критерий завершения - количество заполненных элементов массива (16)
+int rCount = 4; // количество строк массива
+int cCount = 4; // количество колонок массива
+int CellsCount = rCount * cCount;
+string moveDirection = "row"; // либо "col" - в зависимости от выбранного направления
+int currentR = 0; // номер текущей строки
+int currentC = 0; // номер текущей колонки
+
+
+int[,] array = new int[rCount,cCount];
+array[0,0] = 1; // [0,0] - стартовая ячейка,имеет значение, равное 1
+int FilledCellsCount = 1; // количество заполненных элементов массива
+
+while(FilledCellsCount <= CellsCount)
+{
+    switch(moveDirection)
+    {
+        case "row":
+        {
+            if((currentC+1) < (rCount-1) & array[currentR,currentC+1] == 0)
+            {
+                FilledCellsCount++;
+                array[currentR,currentC+1] = FilledCellsCount;
+                currentC++;
+                break;
+            
+            
+                if ((currentC-1) > 0 & array[currentC-1,currentR] == 0)
+                {
+                    FilledCellsCount++;
+                    array[currentR,currentC-1] = FilledCellsCount;
+                    currentC--;
+                    break;
+                }
+            }    
+            else
+            {
+                moveDirection = "col";    
+            }
+
+            
+
+            break;
+        }
+
+        case "col":
+        {
+
+            break;
+        }
+    }   
+}
 
 
 }
