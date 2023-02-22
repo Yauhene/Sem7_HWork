@@ -330,16 +330,16 @@ void Task_58()
     int cCount = 2;
     
     
-    //int[,] array1 = makeArray(rCount, cCount);
-    //int[,] array2 = makeArray(rCount, cCount);
-    // тестовый блок-------------------------------------------------------------------
-    int[,] array1 = new int[2,2];
+    int[,] array1 = makeArray(rCount, cCount);
+    int[,] array2 = makeArray(rCount, cCount);
+    Console.WriteLine("тест на эталонных данных---------------------------");
+    
     array1[0,0] = 2;
     array1[0,1] = 4;
     array1[1,0] = 3;
     array1[1,1] = 2;
 
-    int[,] array2 = new int[2,2];
+    
     array2[0,0] = 3;
     array2[0,1] = 4;
     array2[1,0] = 3;
@@ -348,13 +348,35 @@ void Task_58()
 
     int[,] array3 = new int [rCount, cCount];
 
+    
+
+    Console.WriteLine($"Матрица 1:");
     printArray(array1);
+
+    Console.WriteLine($"Матрица 2:");
     printArray(array2);
 
     array3 = MultiplyABmatrix(array1, array2, array3);
+    Console.WriteLine();
+    Console.WriteLine("Результат на тестовых данных---------");
+
+    PauseString();
+
+    int[,] array4 = makeArray(rCount, cCount);
+    int[,] array5 = makeArray(rCount, cCount);
+    int[,] array6 = new int [rCount, cCount];
+
+    Console.WriteLine($"Матрица 1:");
+    printArray(array4);
+
+    Console.WriteLine($"Матрица 2:");
+    printArray(array5);
+
+    array6 = MultiplyABmatrix(array1, array2, array3);
 
     Console.WriteLine();
-    printArray(array3);
+    Console.WriteLine("Результат на случайных данных");
+    printArray(array6);
     
      PauseString();
 }
