@@ -362,6 +362,8 @@ void Task_58()
 
     PauseString();
 
+    Console.WriteLine("тест на случайных сгенерированных данных---------------------------");
+
     int[,] array4 = makeArray(rCount, cCount);
     int[,] array5 = makeArray(rCount, cCount);
     int[,] array6 = new int [rCount, cCount];
@@ -372,7 +374,7 @@ void Task_58()
     Console.WriteLine($"Матрица 2:");
     printArray(array5);
 
-    array6 = MultiplyABmatrix(array1, array2, array3);
+    array6 = MultiplyABmatrix(array4, array5, array6);
 
     Console.WriteLine();
     Console.WriteLine("Результат на случайных данных");
