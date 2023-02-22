@@ -17,7 +17,7 @@ void myTaskMenu()
     Console.WriteLine();
     Console.WriteLine();
     Console.WriteLine("--------------------------------------------------------------------");
-    Console.WriteLine("Представлены решения задач 54, 50 и 52");
+    Console.WriteLine("Представлены решения задач 54, 56 и 52");
     Console.WriteLine("Введите номер задачи(либо q/Q для выхода):");
     Console.WriteLine("--------------------------------------------------------------------");
     for(int i=1; i <=5; i++) Console.WriteLine();
@@ -216,7 +216,7 @@ int FindMinSumRow(int[,] arr)
             }
             
     }
-    Console.ReadLine();
+    //Console.ReadLine();
     return minRowNumber;
 }
 
@@ -279,19 +279,16 @@ void Task_56()
     int[,] array = makeArray(rCount, cCount);
 
     int minSumRow = FindMinSumRow(array);
-    //int columnNumber;
-    //int indexNum=0;
-    //bool onceMore=true;
+    
+    //Console.Clear();
+    Console.WriteLine();
 
-
-    Console.Clear();
-
-    //Console.WriteLine(minSumRow);
-    printArray(array);
+    //printArray(array);
+    Console.WriteLine();
     Console.WriteLine($"Строка с индексом {minSumRow} ({minSumRow+1}-я сверху) имеет минимальную сумму значений элементов");
     Console.WriteLine();
-    //printArray(array);
     
+    Console.WriteLine("Для продолжения нажмите Enter...");
     PauseString();
 }
 
@@ -320,9 +317,9 @@ void Task_52()
 
 void PauseString()
 {
-    Console.WriteLine( "Для продолжения нажмите 'Ввод'...");
+    
     Console.ReadLine();
 }
 
     myTaskMenu();
-    //Task_54();
+  
