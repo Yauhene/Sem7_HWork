@@ -54,9 +54,9 @@ void myTaskMenu()
                 break;
             }
             
-             case "52":
+             case "58":
             {    Console.WriteLine($"Выбрано : Задача {selNum}");
-                Task_52();
+                Task_58();
 
                 selNum = "";
 
@@ -222,9 +222,27 @@ int FindMinSumRow(int[,] arr)
 
 //================================================================================================================================
 // Функция умножает двумерную матрицу (массив) arr1 на матрицу arr2, результат возвращает в матрице arr3
-int[,] MultiplyABmatrix(arr1, arr2, arr3)
+int[,] MultiplyABmatrix(int[,] arr1, int[,] arr2, int[,] arr3)
 {
+    int rCount = arr3.GetLength(0);
+    int cCount = arr3.GetLength(1);
 
+    for(int i = 0; i < rCount;i++)
+    {
+        for(int j = 0; j < cCount; j++)
+        {
+            arr3[i,j] = 0;
+            for(int m = 0; m < arr1.GetLength(0); m++)
+            {
+                
+                    arr3[i,j] = arr3[i,j] + (arr1[m,j] * arr2[i,m]);
+            
+            }
+            Console.WriteLine($"arr3[{i},{j}] = {arr3[i,j]}");
+        }
+
+    }
+    return arr3;
 }
 
 //==== Задача 54: =================================================================================================================
@@ -297,32 +315,47 @@ void Task_56()
     PauseString();
 }
 
+
+// == Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+// Например, даны 2 матрицы:
+// 2 4 | 3 4
+// 3 2 | 3 3
+// Результирующая матрица будет:
+// 18 20
+// 15 18
+
 void Task_58()
 {
     int rCount = 2;
-    int cCount = 3;
+    int cCount = 2;
     
-    // double sumInColumn;
-    int[,] array1 = makeArray(rCount, cCount);
-    int[,] array2 = makeArray(rCount, cCount);
+    
+    //int[,] array1 = makeArray(rCount, cCount);
+    //int[,] array2 = makeArray(rCount, cCount);
+    // тестовый блок-------------------------------------------------------------------
+    int[,] array1 = new int[2,2];
+    array1[0,0] = 2;
+    array1[0,1] = 4;
+    array1[1,0] = 3;
+    array1[1,1] = 2;
+
+    int[,] array2 = new int[2,2];
+    array2[0,0] = 3;
+    array2[0,1] = 4;
+    array2[1,0] = 3;
+    array2[1,1] = 3;
+
+
     int[,] array3 = new int [rCount, cCount];
 
-    int[,] MultiplyABmatrix(array1, array2, array3);
+    printArray(array1);
+    printArray(array2);
+
+    array3 = MultiplyABmatrix(array1, array2, array3);
 
     Console.WriteLine();
-    printArray(array);
-    for (int j = 0; j < cCount; j++)
-    {
-        sumInColumn = 0;
-
-        for (int i = 0; i < rCount; i++)
-        {
-            sumInColumn = sumInColumn + array[i,j];
-        }
-        string stringRes = string.Format("{0:f2}", sumInColumn/rCount);
-        
-        Console.WriteLine("Среднее арифметическое колонки " + (j+1) + " равно " + stringRes);
-    }
+    printArray(array3);
+    
      PauseString();
 }
 
