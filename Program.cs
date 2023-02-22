@@ -66,6 +66,18 @@ void myTaskMenu()
                 break;
             }
 
+            case "60":
+            {    Console.WriteLine($"Выбрано : Задача {selNum}");
+                Task_60();
+
+                selNum = "";
+
+                Console.Clear(); 
+                for(int i = 1; i <= 3; i++) Console.WriteLine();
+            
+                break;
+            }
+
             case "q":
             {
                 exitNah = false;
@@ -348,9 +360,7 @@ void Task_58()
 
     int[,] array3 = new int [rCount, cCount];
 
-    
-
-    Console.WriteLine($"Матрица 1:");
+        Console.WriteLine($"Матрица 1:");
     printArray(array1);
 
     Console.WriteLine($"Матрица 2:");
@@ -383,6 +393,38 @@ void Task_58()
     printArray(array6);
     
      PauseString();
+}
+
+// Задача 60 ==============================================================================================
+// Сформировать трёхмерный массив из неповторяющихся двузначных чисел. 
+// Написать программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+
+void Task_60()
+{
+    int rCount = 2;
+    int cCount = 2;
+    int sCount = 2;
+    Random rnd = new Random();
+    int t = 0;
+    int[,,] arr3D = new int[rCount,cCount,sCount];
+    int[] testArr = new int[rCount * cCount * sCount];
+    int testArrCounter = 0;
+    for(int i = 0; i < arr3D.GetLength(0); i++)
+    {
+        for(int j = 0; j < arr3D.GetLength(1); j++)
+        {
+            for(int g = 0; g < arr3D.GetLength(2); g++)
+            {
+                while(NoMatches())
+                {
+                    Console.WriteLine($"t = {t}");
+                    t++;
+                //arr3D[i,j,g] = rnd.Next(1,100);
+                }
+            }
+        }
+    }
+    PauseString();
 }
 
 void PauseString()
