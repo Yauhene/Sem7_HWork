@@ -110,6 +110,24 @@ void myTaskMenu()
     }
 }
 
+//============================================================================================
+// Функция проверяет наличие принятого значения в указанном массиве (неповторяемость значений)
+
+bool NoMatches(int newVol, int[] arrTest)
+{
+    bool noM = true;
+        
+        for(int g = 0; g < arrTest.Length; g++)
+            {
+                if (arrTest[g] == newVol)
+                {
+                    noM = false;
+                }
+            }
+        
+    return noM;
+}
+
 //=====================================================================================================================
 // Функция принимает число из консоли и обходит ошибку ввода
 int IntInput(string intName) // функция принимает число из консоли, преобразуя его в целое
@@ -404,6 +422,9 @@ void Task_60()
     int rCount = 2;
     int cCount = 2;
     int sCount = 2;
+    int newValue;
+    int numOfValuesInTestArr = 0;
+
     Random rnd = new Random();
     int t = 0;
     int[,,] arr3D = new int[rCount,cCount,sCount];
@@ -415,12 +436,18 @@ void Task_60()
         {
             for(int g = 0; g < arr3D.GetLength(2); g++)
             {
-                while(NoMatches())
+                newValue = rnd.Next(1,100);
+                while(NoMatches(newValue, testArr))
                 {
-                    Console.WriteLine($"t = {t}");
-                    t++;
+                    //newVolume = rnd.Next(1,100);
+                    // Console.WriteLine($"t = {t}");
+                    // t++;
+                    testArr[numOfValuesInTestArr+1] = newValue;
+                    numOfValuesInTestArr++;
+                
                 //arr3D[i,j,g] = rnd.Next(1,100);
                 }
+
             }
         }
     }
