@@ -78,6 +78,19 @@ void myTaskMenu()
                 break;
             }
 
+
+            // case "62":
+            // {    Console.WriteLine($"Выбрано : Задача {selNum}");
+            //     Task_62();
+
+            //     selNum = "";
+
+            //     Console.Clear(); 
+            //     for(int i = 1; i <= 3; i++) Console.WriteLine();
+            
+            //     break;
+            // }
+
             case "q":
             {
                 exitNah = false;
@@ -116,23 +129,12 @@ void myTaskMenu()
 bool NoMatches(int newVol, int[] arrTest)
 {
     bool noM = true;
-    // распечатка проверочного массива-------------------------------------
-                    // Console.Write("Проверочный массив: ");
-                    // for(int m = 0; m < arrTest.Length; m++)
-                    // {
-                        
-                    //     Console.Write($"{arrTest[m]}, ");
-                    // }
-                    // Console.WriteLine();
-        
+            
         for(int g = 0; g < arrTest.Length; g++)
             {
                 if (arrTest[g] == newVol)
                 {
-                    //Console.WriteLine($"arrTest[g] = {arrTest[g]}, newVol = {newVol}");
                     noM = false;
-                    // Console.WriteLine($"Попытка повторного внесения значения {newVol}");
-                    // Console.WriteLine($"g = {g}");
                 }
             }
         
@@ -497,49 +499,172 @@ int currentC = 0; // номер текущей колонки
 int[,] array = new int[rCount,cCount];
 array[0,0] = 1; // [0,0] - стартовая ячейка,имеет значение, равное 1
 int FilledCellsCount = 1; // количество заполненных элементов массива
+Console.WriteLine(moveDirection);
+//printArray(array);
 
-while(FilledCellsCount <= CellsCount)
-{
+    while(FilledCellsCount <= CellsCount)
+    {
     switch(moveDirection)
     {
         case "row":
         {
-            if((currentC+1) < (rCount-1) & array[currentR,currentC+1] == 0)
+           
+            Console.WriteLine(moveDirection);
+            // проверка на выход из диапазона по колонкам справа и слева
+            Console.WriteLine($"currentC = {currentC}, cCount-1 = {cCount-1}");
+            Console.WriteLine($"(currentC-1) >= 0 = {(currentC-1) >= 0}");
+            //Console.WriteLine($"currentR = {currentR}, array[currentR,currentC] = {array[currentR,currentC]}");
+            //PauseString();
+            // проверка на возможность заполнения "слева"
+            if((currentC-1) >= 0)
             {
-                FilledCellsCount++;
-                array[currentR,currentC+1] = FilledCellsCount;
-                currentC++;
-                break;
-            
-            
-                if ((currentC-1) > 0 & array[currentC-1,currentR] == 0)
+                Console.WriteLine("Пошла проверка 'слева'");
+                if(array[currentR,currentC-1]==0)
                 {
-                    FilledCellsCount++;
-                    array[currentR,currentC-1] = FilledCellsCount;
+                    Console.WriteLine($"currentR = {currentR}, array[currentR,currentC-1] = {array[currentR,currentC-1]}");
                     currentC--;
-                    break;
+                    FilledCellsCount++;
+                    array[currentR,currentC] = FilledCellsCount;
+                    
+                    // printArray(array);
+                    // PauseString();
                 }
-            }    
-            else
-            {
-                moveDirection = "col";    
+            }
+            // проверка на возможность заполнения "справа"
+            if((currentC+1) <= cCount-1)///?????
+            {  
+                Console.WriteLine("********* Пошла проверка 'справа'");
+                Console.WriteLine($"currentC = {currentC}, cCount-1 = {cCount-1}");
+                Console.WriteLine($"currentR = {currentR}, array[currentR,currentC+1] = {array[currentR,currentC+1]}");
+                Console.WriteLine($"currentC+1 <= cCount-1 = {(currentC+1) <= cCount-1}");
+                PauseString();
+                if(array[currentR,currentC+1]==0)
+                {
+                    currentC++;
+                    Console.WriteLine($"currentC = {currentC}---------");
+                    Console.WriteLine("Итак:...");
+                    FilledCellsCount++;
+                    Console.WriteLine($"FilledCellsCount = {FilledCellsCount}");
+                    
+                    Console.WriteLine($"Попытка присвоения этой блядской четверки:");
+                    array[currentR,currentC] = FilledCellsCount;
+                    Console.WriteLine($"Ну, присвоил...");
+                    Console.WriteLine($"array[currentR,currentC] = {array[currentR,currentC]}");
+                    //Console.WriteLine($"array[currentR,currentC+1] = {array[currentR,currentC+1]}");
+
+                    //currentC++;
+                     Console.WriteLine($"currentC = {currentC}, бля!!!");
+                    Console.WriteLine($"currentC+1 <= cCount-1 = {(currentC+1) <= cCount-1}");
+                    printArray(array);
+                    //PauseString();
+                }
             }
 
+
+            else //(currentC) > (cCount-1) |
             
+                // (currentC-1 < 0) |
+                // (currentC+1 != 0))
+                 // moveDirection = "col";
+            {
+                Console.WriteLine($"Пошла проверка на смену направления");
+                Console.WriteLine($"currentC+1 = {currentC+1}, cCount-1 = {cCount-1}");
+                Console.WriteLine($"currentC-1 = != 0 {currentC-1 !=0 }");
+                Console.WriteLine($"(currentC) > (cCount-1) = {(currentC) > (cCount-1)}");
+                //Console.WriteLine($"(cCount-1 < 0)) = {cCount-1 < 0}");
+                //Console.WriteLine($"(cCount+1 != 0)) = {cCount+1 != 0}");
 
-            break;
-        }
-
+                printArray(array);
+                //PauseString();
+                moveDirection = "col";
+            }
+            
+            printArray(array);
+            //PauseString();
+             break;   
+        }        
+            
+    
         case "col":
-        {
+        {   
+            Console.WriteLine(moveDirection);
+            // проверка на выход из диапазона по строкам "сверху" и "снизу"
+            Console.WriteLine("Пошла проверка на выход из диапазона по строкам 'сверху' и 'снизу'");
+            Console.WriteLine($"currentR-1 = {currentR-1}, rCount-1 = {rCount-1}");
+            //PauseString();
+            // проверка на возможность заполнения "снизу"
+            PauseString();
+            if((currentR-1) > 0)
+            { 
+                if(array[currentR-1,currentC]==0)
+                {
+                    Console.WriteLine($"array[currentR,currentC] = {array[currentR,currentC]}");
+                    Console.WriteLine("Пошла проверка 'снизу'");
+                    PauseString();
 
+                    FilledCellsCount++;
+                    currentR--;
+                    array[currentR,currentC] = FilledCellsCount;
+                    
+                    printArray(array);
+                    PauseString();
+                }
+            }
+             else
+            {
+               moveDirection = "row";
+            }
+            // проверка на возможность заполнения "сверху"
+
+            if((currentR+1) <= (rCount-1))
+            {
+                //currentR++;
+                if(array[currentR+1,currentC]==0)
+                {
+                    //Console.WriteLine($"array[currentR+1,currentC]==0 = {array[currentR+1,currentC]==0}");
+                    Console.WriteLine($"array[currentR+1,currentC] = {array[currentR+1,currentC]}");
+                    
+                    Console.WriteLine("Пошла проверка 'сверху'");
+                    Console.WriteLine($"currentR = {currentR}");
+                    currentR++;
+                    FilledCellsCount++;
+                    
+                    array[currentR,currentC] = FilledCellsCount;
+                    
+                    printArray(array);
+                    PauseString();
+                }
+            }
+            else//((currentR+1) > (rCount-1) || 
+            {//    (currentR+1) > 0 ||
+            //    (currentR-1 != 0) ||
+            //    (currentR-1 < 0))
+            //{
+               moveDirection = "row";
+            }
+           
+            printArray(array);
+            PauseString();
+             break;   
+        }
+        case "default":
+        {
+            // if(moveDirection == "row") moveDirection = "col";
+            // else moveDirection = "row";
+            // Console.WriteLine();
             break;
         }
+    }
+       
     }   
+
+    
+     printArray(array);
+     PauseString();
+
 }
 
 
-}
 
 void PauseString()
 {
@@ -547,6 +672,7 @@ void PauseString()
     Console.ReadLine();
 }
 
-    myTaskMenu();
+    //myTaskMenu();
+    Task_62();
    
   
